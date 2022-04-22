@@ -1,0 +1,107 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+
+
+.col{
+    padding: 5%;
+    padding-bottom: 70px;
+}
+
+.alinhar{
+    display: flex;
+    justify-content: center;
+
+}
+
+.espacar{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.curriculo{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.space{
+    
+    padding: 2% !important;
+}
+
+.espacarbotoes{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.espacarlabel{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.input{
+    height: 15px !important;
+}
+
+.center{
+    justify-content: center;
+    display: flex;
+}
+
+.centerbutton{
+    margin-top: 30px;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+}
+.btncadastrar{
+    width: 100%;
+}
+
+.cartao{
+    border: none !important;
+}
+
+.text{
+    text-align: justify;
+
+}
+
+p{
+    width: 10px;
+}
+
+.formm{
+    margin-left: 25%;
+    border: 1px solid black;
+    width: 500px;
+    text-align: center;
+    align-items: center;
+    width: 100vh;
+    height: 100vh;
+
+}
+
+.container{
+    text-align: justify;
+    width: 50%;
+    
+}
+
+h5{
+    font-size: 15px;
+}
+
+.via{
+    margin-left: 15px;   
+}
+
+mark{
+    background-color: rgba(106, 126, 36, 0.233);
+}
+
+.buton{
+    margin-top: 10px;
+}
