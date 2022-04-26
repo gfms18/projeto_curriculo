@@ -10,9 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Andada+Pro&family=Yeseva+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+    
     <script src="https://kit.fontawesome.com/9fd53d343a.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/src/main/resources/static/estilo.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
@@ -129,6 +128,24 @@ mark{
     margin-top: 10px;
 }
 
+td{
+	font-size: 16px;
+	text-align: center;
+}
+
+th{
+	font-size:10px;
+	text-align: center;
+}
+
+.flex{
+	display: flex;
+}
+
+.menor{
+	font-size: 11px;
+}
+
 	</style>
 
 <body>
@@ -142,10 +159,12 @@ mark{
     </nav>
     
     
+    
         <div class="container">
+        <div th:text="${mensagemApagado}" style="color: forestgreen;"></div>
             <div class="row">
-                <div class="col-0"></div>
-                <div class="col-12">
+                
+                
                     <div class="caixa" style="text-align: center; margin-top: 30px; margin-bottom: 30px">
                         <h1>Candidatos</h1>
                     </div>
@@ -178,8 +197,9 @@ mark{
                     </form>
                     </div>
                     
+                   
                     <h5>Buscar por área de interesse e posição da vaga</h5>
-                    <div style="margin-top: 30px; margin-bottom: 30px; display: flex; justify-content: start;">
+                    <div style="margin-top: 30px; margin-bottom: 30px; display: flex;">
                     <form action="/adm/buscar_junto" method="post">
                     <select style="margin-left: 5px; margin-bottom: 20px; text-align: center; align-items: center; width: 50%; height: 34px; background-color:#2C2C2C; border: none; border-radius: 5px; color: aliceblue"  name="cargo">
 	                        <option value="">Área de interesse</option>
@@ -198,21 +218,23 @@ mark{
 	                                th:text="${Subcgs}">
 	                        </option>
 	                    </select>
-                    
+                   
                     <button type="submit" class="btn btn-success" id="send" style="width: 40%; margin-left:10px; height: 35px;" >buscar  <i class="fa-solid fa-magnifying-glass"></i></button>
                     </form>
                     </div>
+                    
 
 
-                <table class="table table-dark table-striped" style="border-radius: 10px;" >
-                    <thead style="border-radius: 10px;">
+                <table class="table" style="border-radius: 10px;" >
+                    <thead class="table-dark" style="border-radius: 10px;">
                       <tr>
                         <th scope="col">Nome</th>
                         <th scope="col">Email</th>
                         <th scope="col">Telefone</th>
-                        <th scope="col">Área especifica</th>
-                        <th scope="col">Área geral</th>
-                        <th scope="col">Curriculo</th>
+                        <th scope="col">Área de interesse</th>
+                        <th scope="col">Área de interesse</th>
+                        <th scope="col">Data de envio</th>
+                        <th scope="col">Baixar curriculo</th>
                         <th scope="col">Apagar curriculo</th>
                       </tr>
                     </thead>
@@ -220,18 +242,20 @@ mark{
                       <tr th:each="cur : ${listaCurriculo}">
                         <td th:text="${cur.nome}"></td>
                         <td th:text="${cur.email}"></td>
-                        <td th:text="${cur.telefone}"></td> 
-                        <td th:text="${cur.areaEspecifica}"></td>
-                        <td th:text="${cur.areaGeral}"></td>
-                        <td><a th:href="|/adm/curriculo/${cur.id}|" th:attr="download=${cur.nomeArquivo}" style="text-decoration: none;">Download </a><i class="fa-solid fa-arrow-down-to-line"></i></td>
-                        <td><a th:href="|/adm/apagarCurriculo/${cur.id}|" style="text-decoration: none; color: red;">Apagar curriculo</a></td>
+                        <td th:text="${cur.telefone}" class="menor"></td>                         
+                        <td th:text="${cur.areaGeral}" class="menor"></td>
+                        <td th:text="${cur.areaEspecifica}" class="menor"></td>
+                        <td th:text="${cur.dataLancamento}"></td>
+                        
+                        <td><a th:href="|/adm/curriculo/${cur.id}|" th:attr="download=${cur.nomeArquivo}" style="text-decoration: none;"><i class="fa-solid fa-file-arrow-down"></i></a><i class="fa-solid fa-arrow-down-to-line"></i></td>
+                        <td><a th:href="|/adm/excluirCurriculo?id=${cur.id}|" style="text-decoration: none; color: red;"><i class="fa-solid fa-trash"></i></a></td>
     
                       </tr>
                     </tbody>
                   </table>
     
                 </div>
-                <div class="col-0"></div>
+                
             </div>
         </div>
 

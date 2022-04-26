@@ -4,12 +4,14 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -22,6 +24,8 @@ import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
@@ -34,6 +38,10 @@ public class Curriculo {
 	private String telefone;
 	private String email;
 	
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	private LocalDate dataLancamento;
+	
+	
 	@ElementCollection
 	private List<String> areaGeral;
 	@ElementCollection
@@ -42,6 +50,8 @@ public class Curriculo {
 	private String nomeArquivo;
 	@Lob
 	private byte[] arquivo;
+	
+	
 	
 	public Integer getId() {
 		return id;
@@ -90,6 +100,12 @@ public class Curriculo {
 	}
 	public void setArquivo(byte[] arquivo) {
 		this.arquivo = arquivo;
+	}
+	public LocalDate getDataLancamento() {
+		return dataLancamento;
+	}
+	public void setDataLancamento(LocalDate dataLancamento) {
+		this.dataLancamento = dataLancamento;
 	}
 
 	

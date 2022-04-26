@@ -2,6 +2,7 @@ package com.Via1.facepe.controllers;
 
 import java.io.IOException;
 import java.sql.Blob;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -77,6 +78,7 @@ public class CurriculoController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}        
+		curriculo.setDataLancamento(LocalDate.now());
 		this.curriculoDAO.save(curriculo);
 		return "enviado";
 	}
@@ -129,10 +131,13 @@ public class CurriculoController {
 		return "buscar_curriculo";
 	}
 	
-	@GetMapping("/adm/apagarCurriculo/{idCurriculo}")//@ResponseBody
-	public void apagarCurriculo(@PathVariable("idCurriculo") Integer idCurriculo){
-		this.curriculoDAO.deleteById(idCurriculo);
-		//return "redirect:/adm/buscar_curriculo";
+	@GetMapping("/adm/excluirCurriculo")//@ResponseBody@PathVariable("idCurriculo") /{idCurriculo}
+	public String apagarCurriculo(Curriculo id, RedirectAttributes ra){
+		System.out.println(id);
+		this.curriculoDAO.delete(id);
+		ra.addFlashAttribute("mensagemApagado", "Curriculo apagado com sucesso.");
+		return "redirect:/adm/buscarCurriculos";
+		
 	}
 
 }
